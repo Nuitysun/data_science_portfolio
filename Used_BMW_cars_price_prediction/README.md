@@ -114,6 +114,20 @@ In this section we will analyze following groups of features one by one:
 
 ## 8. Model Development. Test regression algorithms
 
+In this section following machine learning algorithms were tested: 
+-	KNeighborsRegressor;
+-	LinearRegression;
+-	SGDRegressor;
+-	GradientBoostingRegressor;
+-	ElasticNetCV;
+-	DecisionTreeRegressor;
+-	RandomForestRegressor;
+-	SVR;
+-	AdaBoostRegressor;
+-	XGBRegressor;
+-	LGBMRegressor;
+-	CatBoostRegressor.
+
 ## 9. Tune model based on CatBoostRegression algorithm 
 ### 9.1 Train CatBoostRegressor using target without transformation
 Since decision trees algorithm is insensitive to the specific values of predictors, we don't have to worry about 'non-normality"'and skewed distribution of the target variable. Here we will try to use real, not transformed, values of `price`.
@@ -137,10 +151,20 @@ The results for the model trained only on 8 features are worse, but are still pr
 
 ### 9.4 Explore predictions of the best performing model based on  CatBoostRegressor algorithm
 
-Below is [Boxplot of %error in predictions by 'model_series'](./Boxplot_%error_in_predictions_by_model_series.png.png) 
+Below is [Boxplot of %error in predictions by 'model_series'](./Boxplot_error_in_predictions_by_model_series.png) 
 From the boxplot we can see that for all model series 75% of predictions have error about 10% or less, but there are many outliers in `%error` column. The widest interquartile range of `%error` values is for 6 model series. Median of errors are the highest for 6 and 7 model series. 19.8% of predictions have error above 10% and 7.8% have error above 15%.
 
 ## 10. Implement BMW used cars predictor using CatBoostRegressor algorithm
+
+In this section we will define a function which predicts car price and will test it on some real world examples from the web site https://www.autotrader.co.uk.
+
+Results of CatBoostRegressor model on the real examples from https://www.autotrader.co.uk web-site: 
+ - explained_variance: 0.9341,
+ - mean_absolute_error: 628.75, 
+ - root_mean_squared_error: 961.897, 
+ - mean_squared_log_error: 0.005877.
+ 
+The sample for this test is not large enough to make any conclusions, but surprisingly RMSE and MSE for these 4 examples are even smaller than on the testing set. It's recommended to test the model on the bigger sample of real data.
 
 ## 11. Conclusion and Recommendations
 
