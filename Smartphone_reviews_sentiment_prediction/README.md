@@ -20,13 +20,13 @@ Being one of the biggest marketplaces in Ukraine, Rozetka.ua also became a site 
 ### Data collection
 The first step is to retrieve Smartphones reviews data. 
 The search for possibility to export reviews from web-site or to use exciting browser extension/plugin didn't bring results, so it was decided to collect the data using web-scraping (`scrappy` module in `python`).
-The script which retrieves necessary data and writes it into the `smartphone_reviews_{current_date}.csv` file is located in separate Jupiter notebook **Scraping_reviews.ipynb**.
+The script which retrieves necessary data and writes it into the `smartphone_reviews_{current_date}.csv` file is located in the separate Jupiter notebook **Scraping_reviews.ipynb**.
 
 *Note: the developed  web-scraping script does not retrieve all available reviews. It is caused by the fact that web-pages are generated dynamically with "Show more" button. To solve this problem, it's necessary to use tools like Selenium, which can interact with web-pages to get full data previously to parsing html. 
 Here we will proceed with the data generated with the scrapy module functionality as it should be enough for purposes of this project.*
 
 ## Data preparation/analysis and predicting sentiment with BERT model
-Script related to this section  is located in separate jupiter notebook **Predicting_reviews_sentiment_with_Bert_model.ipynb**.
+Script related to this section is located in the separate jupiter notebook **Predicting_reviews_sentiment_with_Bert_model.ipynb**.
 ### Step 1: Read dataset and perform basic preprocessing
 In this section following steps are performed:
 - read datasets from the `./reviews_data` folder, 
@@ -40,7 +40,7 @@ In this section following steps are performed:
 In this section we explore:
 - `review_rating` variable,
 > &nbsp;&nbsp;&nbsp;&nbsp; Below is the plot with `review_ratings` values. 
-We can see that a big proportion, about 32%, of reviews, don't have filled rating (0 value). So predicting sentiment for reviews without rating can be useful as it will allow to add classification for significant part of the data.
+We can see that a big proportion, about 32%, of reviews, don't have filled rating (0 value). So predicting sentiment for reviews without rating can be useful as it will allow to add sentiment classification for significant part of the data.
 Another thing that we can conclude from the plot is that rating distribution is imbalanced - there are much more positive reviews (values 4 and 5) than negative.
 
 > &nbsp;&nbsp;&nbsp;&nbsp; ![review_rating values](./images/review_rating_values.png)
@@ -124,7 +124,7 @@ By adding sentiment classified by the model to the table with sentiment calculat
 
 ### Possible ways to improve model performance:
 
-- 	Explore differences between rated and unrated reviews. Seems like unrated reviews have different characteristics and distribution (possibly they contain more complains about product defects/warranty issues than rated reviews).
+- 	Explore differences between rated and unrated reviews. Seems like unrated reviews have different characteristics and distribution (possibly they contain more complains about product defects/warranty issues/shop service than rated reviews).
 - 	Load more reviews data.
 -	Increase number of epochs during model training.
 -	As on the unrated data all errors are false positive, it can be useful to try to oversample reviews with negative sentiment, so negative class proportion is even bigger than for positive class. It can help model to learn more about negative class.
@@ -132,7 +132,5 @@ By adding sentiment classified by the model to the table with sentiment calculat
 
 ### Ideas for the next steps:
 
-It is important to consider that reviews records sometimes don't contain actual review of the product, but rather feedback about shop/service or questions. 
-It may be useful to explore how to classify reviews into categories: product review, service feedback, question (record can have category product review and service feedback at the same time). 
-
-This way it will be possible to refine statistics about sentiment regarding products. Also, it may be useful to analyze what sentiment customers express about marketplace itself and service received. The next step could be classifying feedback about service in the categories: with what customers are satisfied and what they complain about.
+It is important to consider that review records sometimes don't contain actual review of the product, but rather feedback about shop/service or questions. It may be useful to explore how to classify reviews into categories: `product reviews`, `service feedback`, `questions` (record can have category product review and service feedback at the same time). 
+For `questions` category it’s doesn’t make much sense to predict sentiment. While for `product reviews` it is useful. Also classifying text type will allow to refine statistics about sentiment regarding products. It may be also useful to analyze what sentiment customers express about marketplace itself and service received (`service feedback`, category). The next step could be researching if it’s possible to retrieve what customers are satisfied and what they complain about in their feedback about service/product.
