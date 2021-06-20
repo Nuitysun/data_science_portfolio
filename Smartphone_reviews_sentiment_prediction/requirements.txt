@@ -1,0 +1,6 @@
+scrapy
+tensorflow
+ktrain
+dateparser==1.0.0
+advertools==0.10.7
+git+https://github.com/amaiya/eli5@tfkeras_0_10_1
