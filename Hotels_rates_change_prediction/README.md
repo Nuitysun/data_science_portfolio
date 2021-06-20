@@ -84,11 +84,17 @@ We will use `hotel_longitude` and `hotel_latitude` features to calculate distanc
 Frequency of rate changes from the previous periods should be useful to predict if rate will change in the future. Here we will add to each observation history of rate changes (for room and hotel) from the past periods.
 
 ## 8. Predict if rate changes for each day of the next week
+![Change_rate values in time](./Change_rate values in time.png)
+![Target_values_in_time](./Target_values_in_time.png)
+
+First chart shows dynamic of `change_rate` values for the period. We can see that approximately during first 20 days there were more changes in price and then `change_rate` drops.
+
+The second chart shows dynamic for the target variable fro the period, we can see that during approximately days 34-77 days (weeks 44-47) values of target variable increases drastically, so during this period hotels updated prices for at least 1 stay date for almost all rooms. In the same time during these 4 weeks overall change rate did not increase much. 
 
 ### 8.1 Define a function for model evaluation
 To evaluate model ability to predict if there is change in rates we will take the last week as test data and will try to predict the change in rates for the each day of the next week based on the data we currently have.
 
-Below is the function to test model performance that will:
+In this section we implemented a function to test model performance that performs:
 - filter out data the last 7 days to be our test set,
 - change in the main dataframe target for the last 7 days to be equal to 0.5 (to avoid information leakage during features generation),
 - generate history (lag) features,
@@ -101,7 +107,7 @@ On the EDA stage we could see from charts plotted on the initial dataset that da
 
 **Predictions for day `Lisbon` data:** 
 
-Results of training set:
+<pre>Results of training set:
 - Average overall accuracy (for both classes) on training set: 97.51%
 Results on testing set:
 - Average overall accuracy (for both classes): 88.79%
@@ -109,11 +115,11 @@ Results on testing set:
 - Average precision for positive class (price changed): 94.81% of rooms that were predicted to have changed prices actually had changes in prices.
 - roc_auc_score: 89.30
 
-For the test week there were 473 observations. Model predicted that we need to update 231 rooms (48.84% of all rooms) and this way we capture 84.23% of all rates changes.
+For the test week there were 473 observations. Model predicted that we need to update 231 rooms (48.84% of all rooms) and this way we capture 84.23% of all rates changes.</pre>
 
 **Predictions for day `London` data:** 
 
-Results of training set:
+<pre>Results of training set:
 - Average overall accuracy (for both classes) on training set: 96.73%
 Results on testing set:
 - Average overall accuracy (for both classes): 90.12%
@@ -121,10 +127,10 @@ Results on testing set:
 - Average precision for positive class (price changed): 93.52% of rooms that were predicted to have changed prices actually had changes in prices.
 - roc_auc_score: 84.93
 
-For the test week there were 800 observations. Model predicted that we need to update 633 rooms (79.12% of all rooms) and this way we capture 93.97% of all rates changes.
+For the test week there were 800 observations. Model predicted that we need to update 633 rooms (79.12% of all rooms) and this way we capture 93.97% of all rates changes.</pre>
 
 **Predictions for day `Barcelona` data:** 
-Results of training set:
+<pre>Results of training set:
 - Average overall accuracy (for both classes) on training set: 90.89%
 Results on testing set:
 - Average overall accuracy (for both classes): 69.73%
@@ -132,16 +138,16 @@ Results on testing set:
 - Average precision for positive class (price changed): 73.37% of rooms that were predicted to have changed prices actually had changes in prices.
 - roc_auc_score: 66.81
 
-For the test week there were 806 observations. Model predicted that we need to update 537 rooms (66.63% of all rooms) and this way we capture 79.60% of all rates changes.
+For the test week there were 806 observations. Model predicted that we need to update 537 rooms (66.63% of all rooms) and this way we capture 79.60% of all rates changes.</pre>
 
 ### 8.2 Increase weight for positive class prediction as it's important to capture all rates changes
 We can improve recall for positive class by sacrificing precision of predictions.
 
 **Predictions for day `Lisbon` data with `scale_pos_weight` = 2.5:** 
-- Average recall for positive class (price changed) increased to 90.77% (from 84.23%), average precision reduced to 90.77% (from 94.81%)
+<pre>- Average recall for positive class (price changed) increased to 90.77% (from 84.23%), average precision reduced to 90.77% (from 94.81%)</pre>
 
 **Predictions for day `Barcelona` data with `scale_pos_weight` = 2.5:** 
-- Average recall for positive class (price changed) increased to 98.38% (from 79.60%), average precision reduced to 70.27% (from 73.37%)
+<pre>- Average recall for positive class (price changed) increased to 98.38% (from 79.60%), average precision reduced to 70.27% (from 73.37%)</pre>
 
 ## 9. Conclusions and Recommendations
 
