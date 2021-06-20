@@ -106,8 +106,10 @@ From inspecting the list we can see that some of classes are useful for the purp
 But also it's important to note that some classes that we want to detect are not available in the pre-trained model (garden, swimming pool, coffeemaker, etc).
 
 **Examples of predictions:**
-![new_room_398](./test_images/predictions/new_room_398.jpg)
+![<img src="[new_room_398]" width="250" hight="150"/>](./test_images/predictions/new_room_398.jpg)
 ![new_room_754](./test_images/predictions/new_room_754.jpg)
+
+[<img src="[myLink]" width="250"/>](image.png)
 
 From applying pre-reained model on our sample images we can see that in general object detection of trained classes works. From quick review we can see that predictions for the following classes worked pretty well: bed, dining table, toilet, tv, laptop, sink. There are few undetected objects on the photos, for example a glass table (room_398.jpg) and sink (room_3.jpg).
 
