@@ -152,6 +152,7 @@ The results for the model trained only on 8 features are worse, but are still pr
 ### 9.4 Explore predictions of the best performing model based on  CatBoostRegressor algorithm
 
 ![Boxplot of %error in predictions by 'model_series'](./Boxplot_error_in_predictions_by_model_series.png) 
+
 The figure above is 'Boxplot of %error in predictions by model_series', from which we can see that for all model series 75% of predictions have error about 10% or less, but there are many outliers in `%error` column. The widest interquartile range of `%error` values is for 6 model series. Median of errors are the highest for 6 and 7 model series. 19.8% of predictions have error above 10% and 7.8% have error above 15%.
 
 ## 10. Implement BMW used cars predictor using CatBoostRegressor algorithm
