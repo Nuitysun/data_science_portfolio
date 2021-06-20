@@ -106,8 +106,8 @@ From inspecting the list we can see that some of classes are useful for the purp
 But also it's important to note that some classes that we want to detect are not available in the pre-trained model (garden, swimming pool, coffeemaker, etc).
 
 **Examples of predictions:**
-![new_room_398](./test_images/predictions/new_room_398.png)
-![new_room_754](./test_images/predictions/new_room_754.png)
+![new_room_398](./test_images/predictions/new_room_398.jpg)
+![new_room_754](./test_images/predictions/new_room_754.jpg)
 
 From applying pre-reained model on our sample images we can see that in general object detection of trained classes works. From quick review we can see that predictions for the following classes worked pretty well: bed, dining table, toilet, tv, laptop, sink. There are few undetected objects on the photos, for example a glass table (room_398.jpg) and sink (room_3.jpg).
 
@@ -140,10 +140,10 @@ But still some of important classes that we want to predict are missing, for exa
 In this section we will test pre-trained Image Classification model ResNet-50 on the sample of real hotel photos.
 
 **Examples of predictions:**
-![room_398](./test_images/room_398.png)
+![room_398](./test_images/room_398.jpg)
 Predicted: [('n03201208', 'dining_table', 0.6906476), ('n04070727', 'refrigerator', 0.04460974), ('n02791124', 'barber_chair', 0.021508591), ('n04065272', 'recreational_vehicle', 0.020597309), ('n03761084', 'microwave', 0.018806074)]
 
-![room_754](./test_images/room_754.png)
+![room_754](./test_images/room_754.jpg)
 Predicted: [('n04239074', 'sliding_door', 0.17551132), ('n02788148', 'bannister', 0.17003809), ('n03742115', 'medicine_chest', 0.10629078), ('n04550184', 'wardrobe', 0.09617319), ('n04005630', 'prison', 0.08277177)]
 
 From prediction we can see that some predictions are useful for the purpose of our project, but model was unable to recognize a class 'desk' on all photos and we can see that for almost all useful classes predictions have pretty low confidence as well as there are many not accurate classification results.
@@ -203,9 +203,9 @@ In GoogleColab following steps were performed:
 	
 ## 8.3. Detect `Swimming pool` with custom object-detection YOLOv5 model for hotel photos sample
 **Examples of predictions:**
-![room_97](./yolov5/runs/detect/exp2/room_97.png)
-![room_72](./yolov5/runs/detect/exp2/room_72.png)
-![room_646](./yolov5/runs/detect/exp2/room_646.png)
+![room_97](./yolov5/runs/detect/exp2/room_97.jpg)
+![room_72](./yolov5/runs/detect/exp2/room_72.jpg)
+![room_646](./yolov5/runs/detect/exp2/room_646.jpg)
 
 From processed sample images we can see that overall results are pretty good, model was able to detect all pools and boxes detection also seem to be pretty accurate. Even for tricky images model detected objects correctly:
 - `room_646.jpg` image contains with river or sea, but model correctly didn't detect a pool in it,
