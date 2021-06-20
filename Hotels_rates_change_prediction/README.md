@@ -84,7 +84,8 @@ We will use `hotel_longitude` and `hotel_latitude` features to calculate distanc
 Frequency of rate changes from the previous periods should be useful to predict if rate will change in the future. Here we will add to each observation history of rate changes (for room and hotel) from the past periods.
 
 ## 8. Predict if rate changes for each day of the next week
-![Change_rate values in time](./Change_rate values in time.png)
+![Change_rate values in time](./Change_rate_values_in_time.png)
+
 ![Target_values_in_time](./Target_values_in_time.png)
 
 First chart shows dynamic of `change_rate` values for the period. We can see that approximately during first 20 days there were more changes in price and then `change_rate` drops.
