@@ -219,9 +219,19 @@ In GoogleColab following steps were performed:
 	
 ## 8.3. Detect `Swimming pool` with custom object-detection YOLOv5 model for hotel photos sample
 **Examples of predictions:**
-![room_97](./yolov5/runs/detect/exp2/room_97.jpg)
-![room_72](./yolov5/runs/detect/exp2/room_72.jpg)
-![room_646](./yolov5/runs/detect/exp2/room_646.jpg)
+<table>
+  <tr>
+    <td valign="top"><img src="./yolov5/runs/detect/exp2/room_97.jpg"/></td>
+    <td valign="top"><img src="./yolov5/runs/detect/exp2/room_75.jpg"/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td valign="top"><img src="./yolov5/runs/detect/exp2/room_72.jpg"/></td>
+    <td valign="top"><img src="./yolov5/runs/detect/exp2/room_646.jpg"/></td>
+  </tr>
+</table>
 
 From processed sample images we can see that overall results are pretty good, model was able to detect all pools and boxes detection also seem to be pretty accurate. Even for tricky images model detected objects correctly:
 - `room_646.jpg` image contains with river or sea, but model correctly didn't detect a pool in it,
