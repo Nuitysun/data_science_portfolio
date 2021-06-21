@@ -99,13 +99,28 @@ In this section we check performance of BERT model v2 :
 - predict sentiment for reviews without rating, 
 - manual check of predicted sentiments for reviews: accuracy of 40 manually checked records is 75% (100% of errors are false positive),
 - plot distribution of reviews by sentiment (positive/negative) for:
-    - only data with filled review_rating: sentiment was calculated from review_rating values  
+ 
+<table>
+  <tr>
+    <td valign="top"><div>only data with filled review_rating:
+</div></td>
+    <td valign="top"><div>all data: 
+    </div></td>
+  </tr>
 
-    ![review_with_rating alt <](./images/reviews_sentiment_calculated_from_review_rating.png#left)
+  <tr>
+    <td valign="top"><div>(sentiment was calculated from review_rating values)
+</div></td>
+    <td valign="top"><div>(sentiment was calculated from review_rating or predicted by model)
+    </div></td>
+  </tr>
 
-    - all data: sentiment was calculated from review_rating or predicted by model 
+  <tr>
+    <td valign="top"><img src="./images/reviews_sentiment_calculated_from_review_rating.png"/></td>
+    <td valign="top"><img src="./images/reviews_sentiment_calculated_from_review_rating_prediction.png"/></td>
+  </tr>
+</table>
 
-    ![for_all data](./images/reviews_sentiment_calculated_from_review_rating_prediction.png)  
 
 >From the plots above we can see that the model predicts bigger fraction of negative sentiment reviews among records without filled rating in comparison to reviews with rating.
 If we compare data with only filled rating and all data (with predicted sentiment), we can see that fraction of positive sentiment reviews drops by 5.9% (from 76.8% to 70.9%).
