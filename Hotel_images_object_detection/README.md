@@ -74,7 +74,7 @@ When evaluating performance of the object-detection model, it’s important to p
     On the next stage of model development for more reliable model evaluation it’s recommended to select the test data of real hotel photos, label it and calculate performance metrics on this test set. This will allow to objectively evaluate model performance and also give a baseline for comparison during model selection and optimization. 
 
 
-## 5. Pre-trained models used <a name="5"></a>
+## 5. Pre-trained models used 
 
 - object detection model YOLOv3 (with [ImageAI library](https://imageai.readthedocs.io/en/latest/));
 - image classification model ResNet50 (with [keras.applications module](https://www.tensorflow.org/api_docs/python/tf/keras/applications));
@@ -107,8 +107,10 @@ But also it's important to note that some classes that we want to detect are not
 
 **Examples of predictions:**
 
+<div>
 <img align="left" src="./test_images/predictions/new_room_398.jpg" width="50%" />
 <img align="right" src="./test_images/predictions/new_room_754.jpg" width="50%" />
+</div>
 
 From applying pre-reained model on our sample images we can see that in general object detection of trained classes works. From quick review we can see that predictions for the following classes worked pretty well: bed, dining table, toilet, tv, laptop, sink. There are few undetected objects on the photos, for example a glass table (room_398.jpg) and sink (room_3.jpg).
 
