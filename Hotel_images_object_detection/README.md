@@ -203,7 +203,7 @@ In GoogleColab following steps were performed:
     - In this step we define number of classes for model training (for this test just 1 class) and don't change other standard parameters of the model.
     - The model yolov5l was chosen. More information about YOLO models can be found [here](https://github.com/ultralytics/yolov5). The chosen checkpoint still has pretty fast speed and higher accuracy.
 
-<img align="center" src="https://user-images.githubusercontent.com/26833433/114313216-f0a5e100-9af5-11eb-8445-c682b60da2e3.png" width="50%" />
+        <img align="center" src="https://user-images.githubusercontent.com/26833433/114313216-f0a5e100-9af5-11eb-8445-c682b60da2e3.png" width="50%" />
  
 5. Train Custom YOLOv5 Detector for 300 epochs.
 6. Evaluate Custom YOLOv5 Detector Performance.
