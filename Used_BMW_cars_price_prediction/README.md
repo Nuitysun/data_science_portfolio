@@ -63,31 +63,13 @@ Based on what is known about the data at current stage and understanding of expe
 **Root Mean squared logarithmic error (RMSLE).** Root mean squared logarithmic error can be interpreted as a measure of the ratio between the true and predicted values. In a simple words we can say that RMSLE only cares about the percentual difference and therefore is robust toward outliers as it scales down big errors nullifying their effect.
 
 ## 5. Machine learning algorithms assumptions
-
-Based on what is known about the data characteristics a linear regression and random forest/gradient boosting algorithms may be suitable for this task. During data preparation and exploration we will take into account assumptions about input data that these algorithms have.
-
-Linear regression may be quite powerful algorithm given the input data complies with following assumptions:  
--	linearity: assumes that the relationship between predictors and target variable is linear,
--	no noise: eg. that there are no outliers in the data,
--	no collinearity: if you have highly correlated predictors, it’s most likely your model will overfit,
--	normal distribution: more reliable predictions are made if the predictors and the target variable are normally distributed,
--	scale: it’s a distance-based algorithm, so preditors should be scaled (Ref. 7).
-
-Random Forest algorithm on the other hand is less demanding as for the data preprocessing:
-- decision trees algorithm is insensitive to the absolute values of predictors, so the data does not need to be rescaled or transformed,
-- algorithm is great with high dimensional data since it is working with subsets of data,
-- algorithm is robust to outliers and non-linear data,
-- problem of overfitting is frequently occur and can be solved with hyperparameters tuning.
+Discussing assumptions of machine learning algorithms that are planned to be used in the project.
 
 ## 6. Read the dataset and clean the data 
 ### 6.1 Read the data and check descriptive statistics
 ### 6.2 Data cleaning
 
 ##  7. Explore independent features relation to target, perform transformations and feature engineering 
-In this section we will analyze following groups of features one by one:
-- 1 target continuous numerical variable: `price`,
-- 4 categorical variables: `model`, `transmission`, `fuelType`, `engine_category`,
-- 8 numerical variables: `year`, `mileage`, `tax`, `mpg`, `engineSize`.
 
 **Target variable `price`.**
 -	`Price` contains a lot of outliers and it's distribution is not normal. Box-Cox transformation was applied and new target `price_transformed` was added.  

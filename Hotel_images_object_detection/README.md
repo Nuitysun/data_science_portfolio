@@ -36,43 +36,11 @@ In this project following steps were performed:
 
 **`Recall`** The higher the recall, the more positive samples the model correctly classified as Positive.
 
-**`Precision-recall curve`** Due to the importance of both precision and recall, a precision-recall curve is used to show the trade-off between the precision and recall values for different thresholds. This curve helps to select the best threshold to maximize both metrics. 
-
-Threshold here refers to predicted probability by the model that object belongs to certain class. When making a prediction model converts probability scores into a class label classification and uses a threshold: when probability score is equal to or above the threshold, the sample is classified as one class. Otherwise, it is classified as the other class (or not classified). 
-
-**`Average precision` (AP)** is a way to summarize the precision-recall curve into a single value representing the average of all precisions. Using a loop that goes through all precisions/recalls, the difference between the current and next recalls is calculated and then multiplied by the current precision. 
-
 **`mAP` (mean Average Precision)** calculates mean among Average Precision of all classes predicted. For our case mAP will be equal to Average Precision since we have only one class to predict.
-
-**`IoU` (Intersection over Union metric)** is a quantitative measure to score how the ground-truth and predicted boxes match. The IoU helps to know if a region has an object or not. The IoU is calculated by dividing the area of intersection between the 2 boxes by the area of their union. The higher the IoU, the better the prediction.  Note that the IoU is 0.0 when there is a 0% overlap between the predicted and ground-truth boxes. The IoU is 1.0 when the 2 boxes fit each other 100%.
-
-To objectively judge whether the model predicted the box location correctly or not, a threshold is used. If the model predicts a box with an IoU score greater than or equal to the threshold, then there is a high overlap between the predicted box and one of the ground-truth boxes. This means the model was able to detect an object successfully. The detected region is classified as Positive (i.e. contains an object).
-
-On the other hand, when the IoU score is smaller than the threshold, then the model made a bad prediction as the predicted box does not overlap with the ground-truth box. This means the detected region is classified as Negative (i.e. does not contain an object).
 
 **`mAP@0.5`** metric refers to Average Precision when IoU is set to 0.5.
 
 **`mAP@0.05:0.95`** metric calculates Average Precision when IoU is set to the range from 0.5 to 0.95. 
-
-More details about described performance metrics for object detection model can be found in this [article](https://www.kdnuggets.com/2021/03/evaluating-object-detection-models-using-mean-average-precision.html).
-
-
-### 4.2. Evaluation approaches and trade-offs
-
-When evaluating performance of the object-detection model, it’s important to pay attention to two aspects:
-
-1.	Context of the usage. We need to check the performance metrics, but sometimes standard metrics cannot help with certain areas of model evaluation. 
-
-    For example, if IoU (Intersection over Union metric) set to be a threshold of 0.5 and the object detected by the model has overlapping area only of 40%, then such object will not be classified by the model. But how is important for a particular use case accuracy of box limits prediction? For some cases it can be critical, for other cases less important. Note, that some of standard performance metrics for object detection models are calculated for fixed IoU values (`mAP@0.5`, `mAP@0.05:0.95`).
-
-    For our case we need to detect object of interest as accurately as possible and it’s acceptable to have an error margin in box limits, but it shouldn’t be too high as incorrectly defined box limits will lead to errors in predictions of class to witch object belongs. 
-
-2. It’s important to calculate quantitative metrics that can give an objective overview of model performance and allow to compare performance of different models or of the same model before and after tuning. 
-
-    In this project we will calculate the performance metrics for the data obtained from `Open Google Data Set v4` and will evaluate model performance based on this data as this should give the first results of this proof-of-concept project. We will also run custom object detection model on the sample of real hotel photos and will visually explore the results. 
-
-    On the next stage of model development for more reliable model evaluation it’s recommended to select the test data of real hotel photos, label it and calculate performance metrics on this test set. This will allow to objectively evaluate model performance and also give a baseline for comparison during model selection and optimization. 
-
 
 ## 5. Pre-trained models used 
 
@@ -178,7 +146,7 @@ In this section we will explore how we can train custom object-detection model b
 
 First step in implementing custom object-detection model is to get training data. 
 
-To train the model we will use `Open Images Dataset v4`, this dataset contains **15.4M bounding boxes for 600 object classes** that can be reviewed[here](https://storage.googleapis.com/openimages/2017_07/bbox_labels_vis/bbox_labels_vis.html).
+To train the model we will use `Open Images Dataset v4`, this dataset contains **15.4M bounding boxes for 600 object classes** that can be reviewed [here](https://storage.googleapis.com/openimages/2017_07/bbox_labels_vis/bbox_labels_vis.html).
 
 In the dataset we have such useful for us classes as:
 - Desk,
@@ -191,32 +159,18 @@ To create a custom dataset for training and load only necessary data [OIDv4_Tool
 
 ## 8.2. Train custom object-detection YOLOv5 model to detect `Swimming pool` class
 
-Training of the model was performed in GoogleColab due to availability of better GPU resources for faster training. The GoogleColab notebook can be accessed via the [link](https://colab.research.google.com/drive/1EfoxoyXrMOWmJo-kiM59FOmHE-9bdw5H?usp=sharing).
+Training of the model `yolov5l` was performed in GoogleColab due to availability of better GPU resources for faster training. The GoogleColab notebook can be accessed via the [link](https://colab.research.google.com/drive/1EfoxoyXrMOWmJo-kiM59FOmHE-9bdw5H?usp=sharing).
 
-In GoogleColab following steps were performed:
-0. Archive and upload the Custom Dataset to GoogleDrive.
-1. Install Dependencies and clone repository with Yolo v5 model.
-2. Download Custom Dataset it the notebook and `data.yaml` file.
-3. Data preprocessing. Change format of labels in `txt` files to YOLO format, which is described [here](https://github.com/ultralytics/yolov5/wiki/Train-Custom-Data) and change size of images.
-    - In this step no additional processing and augmentation  for images was performed. It's possible to explore if model can be improved by applying additional preprocessing steps. 
-4. Define Model Configuration and Architecture.
-    - In this step we define number of classes for model training (for this test just 1 class) and don't change other standard parameters of the model.
-    - The model yolov5l was chosen. More information about YOLO models can be found [here](https://github.com/ultralytics/yolov5). The chosen checkpoint still has pretty fast speed and higher accuracy.
+**Performance metrics that we got on validation dataset:**
+-	Precision and Recall are about 90%+.
+-	`mAP@0.5`(mean Average Precision when IoU is set to 0.5) seems to be to also be pretty high – about 95%.
+-	`mAP@0.05:0.95` (mean Average Precision when IoU is set to the range from 0.5 to 0.95) is expectedly lower, but still reaches almost 80%. For our use case it’s important to detect if the object is in the picture and we care less about precision of box detection, so results from this metric seem to be acceptable. 
 
-        <img align="center" src="https://user-images.githubusercontent.com/26833433/114313216-f0a5e100-9af5-11eb-8445-c682b60da2e3.png" width="50%" />
- 
-5. Train Custom YOLOv5 Detector for 300 epochs.
-6. Evaluate Custom YOLOv5 Detector Performance.
-    Performance metrics that we got on validation dataset:
-    -	Precision and Recall are about 90%+.
-    -	`mAP@0.5`(mean Average Precision when IoU is set to 0.5) seems to be to also be pretty high – about 95%.
-    -	`mAP@0.05:0.95` (mean Average Precision when IoU is set to the range from 0.5 to 0.95) is expectedly lower, but still reaches almost 80%. For our use case it’s important to detect if the object is in the picture and we care less about precision of box detection, so results from this metric seem to be acceptable. 
-7. Run Inference on test set with trained Weights.
-    Performance metrics on the test dataset do not differ much:
-    - Precision is 96.3%.
-    - Recall is 90.8%.
-    - `mAP@0.5` is 94.7%.
-    - `mAP@0.05:0.95` is 77.4%.
+**Performance metrics on the test dataset do not differ much:**
+- Precision is 96.3%.
+- Recall is 90.8%.
+- `mAP@0.5` is 94.7%.
+- `mAP@0.05:0.95` is 77.4%.
 	
 ## 8.3. Detect `Swimming pool` with custom object-detection YOLOv5 model for hotel photos sample
 **Examples of predictions:**
