@@ -146,11 +146,21 @@ But still some of important classes that we want to predict are missing, for exa
 In this section we will test pre-trained Image Classification model ResNet-50 on the sample of real hotel photos.
 
 **Examples of predictions:**
-![room_398](./test_images/room_398.jpg)
-Predicted: [('n03201208', 'dining_table', 0.6906476), ('n04070727', 'refrigerator', 0.04460974), ('n02791124', 'barber_chair', 0.021508591), ('n04065272', 'recreational_vehicle', 0.020597309), ('n03761084', 'microwave', 0.018806074)]
 
-![room_754](./test_images/room_754.jpg)
-Predicted: [('n04239074', 'sliding_door', 0.17551132), ('n02788148', 'bannister', 0.17003809), ('n03742115', 'medicine_chest', 0.10629078), ('n04550184', 'wardrobe', 0.09617319), ('n04005630', 'prison', 0.08277177)]
+<table>
+  <tr>
+    <td valign="top"><img src="./test_images/predictions/new_room_398.jpg"/></td>
+    <td valign="top"><img src="./test_images/predictions/new_room_754.jpg"/></td>
+  </tr>
+</table>
+
+<table>
+  <tr>
+    <td valign="top"><div>Predicted: [('n03201208', 'dining_table', 0.6906476), ('n04070727', 'refrigerator', 0.04460974), ('n02791124', 'barber_chair', 0.021508591), ('n04065272', 'recreational_vehicle', 0.020597309), ('n03761084', 'microwave', 0.018806074)]
+</div></td>
+    <td valign="top"><div>Predicted: [('n04239074', 'sliding_door', 0.17551132), ('n02788148', 'bannister', 0.17003809), ('n03742115', 'medicine_chest', 0.10629078), ('n04550184', 'wardrobe', 0.09617319), ('n04005630', 'prison', 0.08277177)]</div></td>
+  </tr>
+</table>
 
 From prediction we can see that some predictions are useful for the purpose of our project, but model was unable to recognize a class 'desk' on all photos and we can see that for almost all useful classes predictions have pretty low confidence as well as there are many not accurate classification results.
 
