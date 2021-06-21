@@ -99,7 +99,7 @@ In this section we check performance of BERT model v2 :
 - predict sentiment for reviews without rating, 
 - manual check of predicted sentiments for reviews: accuracy of 40 manually checked records is 75% (100% of errors are false positive),
 - plot distribution of reviews by sentiment (positive/negative) for:
- 
+ <>
 <table>
   <tr>
     <td valign="top"><div>only data with filled review_rating:
@@ -116,8 +116,8 @@ In this section we check performance of BERT model v2 :
   </tr>
 
   <tr>
-    <td valign="top"><img src="./images/reviews_sentiment_calculated_from_review_rating.png"/></td>
-    <td valign="top"><img src="./images/reviews_sentiment_calculated_from_review_rating_prediction.png"/></td>
+    <td valign="top">  <center><img src="./images/reviews_sentiment_calculated_from_review_rating.png" /></center></td>
+    <td valign="top"> <center><img src="./images/reviews_sentiment_calculated_from_review_rating_prediction.png"/> </center></td>
   </tr>
 </table>
 
