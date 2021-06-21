@@ -106,7 +106,7 @@ From inspecting the list we can see that some of classes are useful for the purp
 But also it's important to note that some classes that we want to detect are not available in the pre-trained model (garden, swimming pool, coffeemaker, etc).
 
 **Examples of predictions:**
-<img align="left" src="./test_images/predictions/new_room_398.jpg" width="50%" /><img align="right" src="./test_images/predictions/new_room_754.jpg" width="50%" />
+
 From applying pre-reained model on our sample images we can see that in general object detection of trained classes works. From quick review we can see that predictions for the following classes worked pretty well: bed, dining table, toilet, tv, laptop, sink. There are few undetected objects on the photos, for example a glass table (room_398.jpg) and sink (room_3.jpg).
 
 Overall the results of detection of trained classes are pretty good, but they are limited to only 80 classes in the pre-trained model, which will be not enough to achieve the goal of predicting hotel amenities. Let's explore other pre-trained models with more classes available for prediction.
